@@ -12,4 +12,8 @@
 - Created `system_prompt.md` in `.ai/prompts/`.
 - Created repository templates: `README.template.md`.
 - Created reporting templates: `report_developer.template.md`, `report_client.template.md`.
+- Created `scripts/generate_report.ps1` for automated report generation.
+- Created `scripts/README.md` for automation documentation.
+- Updated milestones: Milestone 3 (Reporting Engine & Automation) completed.
+- Project reached 96% completion of Phase 2.
 - Updated milestones: Milestone 2 (Dashboard) completed.

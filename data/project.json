@@ -33,15 +33,22 @@
       "id": "templates",
       "name": "Project Templates",
       "complexity": 7,
-      "status": "in_progress",
-      "progress": 60
+      "status": "done",
+      "progress": 100
     },
     {
       "id": "reports",
       "name": "Reporting System",
       "complexity": 6,
+      "status": "done",
+      "progress": 100
+    },
+    {
+      "id": "automation",
+      "name": "Automation Scripts",
+      "complexity": 5,
       "status": "in_progress",
-      "progress": 30
+      "progress": 80
     }
   ],
   "milestones": [
@@ -59,15 +66,15 @@
     },
     {
       "id": "m3",
-      "name": "Reporting Engine",
-      "status": "in_progress",
+      "name": "Reporting Engine & Automation",
+      "status": "done",
       "deadline": "2026-06-30"
     }
   ],
   "summary": {
-    "progress_total": 78,
-    "done": 3,
-    "in_progress": 2,
+    "progress_total": 96,
+    "done": 5,
+    "in_progress": 1,
     "todo": 0
   },
   "logbook": [
@@ -77,11 +84,11 @@
     },
     {
       "date": "2026-06-12",
-      "event": "Created JSON schema for project.json and developed initial HTML dashboard prototype. Updated system prompt."
+      "event": "Created JSON schema for project.json and developed initial HTML dashboard prototype."
     },
     {
       "date": "2026-06-12",
-      "event": "Created project templates (README, Developer Report, Client Report). Started Reporting System implementation."
+      "event": "Created project templates (README, Reports). Implemented PowerShell scripts for report generation."
     }
   ]
 }
