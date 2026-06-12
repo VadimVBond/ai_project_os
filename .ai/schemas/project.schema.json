@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Data Schema",
+  "type": "object",
+  "required": ["project", "modules", "summary", "logbook"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": ["name", "type", "version", "status", "created_at"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "version": { "type": "string" },
+        "status": { "enum": ["planning", "initialization", "active", "review", "completed"] },
+        "created_at": { "type": "string", "format": "date" },
+        "updated_at": { "type": "string", "format": "date" }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "complexity", "status", "progress"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "complexity": { "type": "integer", "minimum": 1, "maximum": 10 },
+          "status": { "enum": ["todo", "in_progress", "blocked", "review", "done"] },
+          "progress": { "type": "integer", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "status": { "enum": ["todo", "in_progress", "done"] },
+          "deadline": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "progress_total": { "type": "integer" },
+        "done": { "type": "integer" },
+        "in_progress": { "type": "integer" },
+        "todo": { "type": "integer" }
+      }
+    },
+    "logbook": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "event"],
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "event": { "type": "string" },
+          "details": { "type": "string" }
+        }
+      }
+    }
+  }
+}
