@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.2.0] - 2026-06-12
+
+### Added
+- PDF Export module implemented.
+- PDF generation script `scripts/generate_pdf.py` added.
+- Documentation for PDF module `scripts/state_engine/README_PDF.md`.
+
+### Changed
+- Project version bumped to 1.2.0.
+- All Phase 3 modules (Git, Telegram, PDF) marked as 100% complete.
+- Total progress reached 100%.
+
 ## [1.1.0] - 2026-06-12
 
 ### Added
