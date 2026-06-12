@@ -1,0 +1,44 @@
+{
+  "en": {
+    "dashboard_title": "AI Project OS Dashboard",
+    "overall_progress": "Overall Progress",
+    "modules": "Modules",
+    "recent_activity": "Recent Activity",
+    "milestones": "Milestones",
+    "version": "Version",
+    "status": "Status",
+    "done": "DONE",
+    "active": "ACTIVE",
+    "todo": "TODO",
+    "loading": "Loading dashboard data...",
+    "error_failed_load": "Failed to load project data"
+  },
+  "ru": {
+    "dashboard_title": "Панель управления AI Project OS",
+    "overall_progress": "Общий прогресс",
+    "modules": "Модули",
+    "recent_activity": "Последние действия",
+    "milestones": "Вехи",
+    "version": "Версия",
+    "status": "Статус",
+    "done": "ГОТОВО",
+    "active": "В РАБОТЕ",
+    "todo": "ПЛАН",
+    "loading": "Загрузка данных...",
+    "error_failed_load": "Не удалось загрузить данные проекта"
+  },
+  "ua": {
+    "dashboard_title": "Панель управління AI Project OS",
+    "overall_progress": "Загальний прогрес",
+    "modules": "Модулі",
+    "recent_activity": "Останні дії",
+    "milestones": "Етапи",
+    "version": "Версія",
+    "status": "Статус",
+    "done": "ГОТОВО",
+    "active": "В РОБОТІ",
+    "todo": "ПЛАН",
+    "loading": "Завантаження даних...",
+    "error_failed_load": "Не вдалося завантажити дані проекту"
+  }
+}

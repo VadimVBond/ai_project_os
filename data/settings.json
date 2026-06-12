@@ -1,0 +1,26 @@
+{
+  "system": {
+    "version": "2.0.0",
+    "language": "en",
+    "theme": "light",
+    "mode": "developer"
+  },
+  "reports": {
+    "pdf_template": "modern",
+    "include_technical_notes": true
+  },
+  "bootstrap": {
+    "project_type": "framework",
+    "framework": "ai_project_os",
+    "deployment": "vercel",
+    "stack": [
+      "ai_project_os",
+      "telegram_bot"
+    ],
+    "detected_at": "2026-06-12T23:16:00.467548"
+  },
+  "integrations": {
+    "telegram_enabled": true,
+    "git_auto_commit": false
+  }
+}

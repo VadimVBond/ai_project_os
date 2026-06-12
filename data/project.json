@@ -1,11 +1,16 @@
 {
   "project": {
-    "name": "AI Project OS",
+    "name": "ai_project_os",
     "type": "framework",
-    "version": "1.2.0",
-    "status": "ready",
+    "version": "2.0.0-alpha",
+    "phase": "Migration v2.0",
+    "status": "upgrading",
     "created_at": "2026-06-12",
-    "updated_at": "2026-06-12"
+    "updated_at": "2026-06-12",
+    "stack": [
+      "ai_project_os",
+      "telegram_bot"
+    ]
   },
   "modules": [
     {
@@ -99,10 +104,10 @@
     }
   ],
   "summary": {
-    "progress_total": 100,
     "done": 9,
     "in_progress": 0,
-    "todo": 0
+    "todo": 0,
+    "progress_total": 100.0
   },
   "logbook": [
     {
