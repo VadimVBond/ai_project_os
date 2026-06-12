@@ -1,20 +1,30 @@
-# AI START HERE
+# AI START CONTRACT
 
-If you are an AI assistant:
+If you are an AI agent (ANY MODEL INCLUDING GEMINI / CLAUDE / COPILOT):
 
-Read files in this order:
+You MUST follow strict order:
 
-1. .ai/context/PROJECT_BRIEF.md
-2. .ai/context/AI_CONTEXT.md
-3. .ai/context/AI_RULES.md
-4. data/project.json
-5. .ai/prompts/system_prompt.md
+1. .ai/context/SSOT_RULE.md
+2. .ai/context/PROJECT_BRIEF.md
+3. .ai/context/AI_CONTEXT.md
+4. .ai/context/AI_RULES.md
+5. .ai/context/PROJECT_STATE.md
+6. data/project.json
+7. .ai/prompts/UPDATE_PROTOCOL.md
 
-After reading them you may:
+---
 
-- analyse project
-- update project state
-- generate reports
-- update dashboard
+## RULES
 
-Do not modify project state before reading all files.
+- Do NOT assume state
+- Do NOT skip files
+- Do NOT modify before full read
+- Do NOT hallucinate progress
+
+---
+
+## EXECUTION MODEL
+
+All actions go through:
+
+UPDATE → STATE ENGINE → project.json → derived files

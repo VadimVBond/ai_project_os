@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [1.1.0] - 2026-06-12
+
+### Added
+- Phase 3 modules initialization: Git Integration, Telegram Integration, PDF Export.
+- Milestone 4 added to tracking.
+- New active tasks defined in `PROJECT_STATE.md`.
+
+### Changed
+- Project version bumped to 1.1.0.
+- Total progress recalculated to 65% due to new scope.
+
 ## [1.0.0] - 2026-06-12
 
 ### Added
