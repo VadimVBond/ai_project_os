@@ -45,13 +45,13 @@
                     <li class="nav-header">
                         <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="block m-t-xs font-bold">Project Admin</span>
-                                <span class="text-muted text-xs block">AI Project OS <b class="caret"></b></span>
+                                <span class="block m-t-xs font-bold" data-i18n="project_admin">Project Admin</span>
+                                <span class="text-muted text-xs block" data-i18n="welcome_message">AI Project OS <b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#" data-i18n="profile">Profile</a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../index.html">Logout</a></li>
+                                <li><a class="dropdown-item" href="../index.html" data-lang-preserve="true" data-i18n="logout">Logout</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">
@@ -117,7 +117,7 @@
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <span class="m-r-sm text-muted welcome-message">AI Project OS</span>
+                            <span class="m-r-sm text-muted welcome-message" data-i18n="welcome_message">AI Project OS</span>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -131,25 +131,25 @@
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-moon-o"></i> Theme <b class="caret"></b>
+                                <i class="fa fa-moon-o"></i> <span data-i18n="theme">Theme</span> <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu dropdown-messages">
-                                <li><a href="#" class="dropdown-item theme-toggle" data-theme="light">Light Mode</a></li>
-                                <li><a href="#" class="dropdown-item theme-toggle" data-theme="dark">Dark Mode</a></li>
+                                <li><a href="#" class="dropdown-item theme-toggle" data-theme="light" data-i18n="light_mode">Light Mode</a></li>
+                                <li><a href="#" class="dropdown-item theme-toggle" data-theme="dark" data-i18n="dark_mode">Dark Mode</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-user"></i> Mode <b class="caret"></b>
+                                <i class="fa fa-user"></i> <span data-i18n="mode">Mode</span> <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu dropdown-messages">
-                                <li><a href="#" class="dropdown-item">Client Mode</a></li>
-                                <li><a href="#" class="dropdown-item">Developer Mode</a></li>
+                                <li><a href="#" class="dropdown-item" data-i18n="client_mode">Client Mode</a></li>
+                                <li><a href="#" class="dropdown-item" data-i18n="developer_mode">Developer Mode</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="../index.html">
-                                <i class="fa fa-sign-out"></i> Exit
+                                <i class="fa fa-sign-out"></i> <span data-i18n="exit">Exit</span>
                             </a>
                         </li>
                     </ul>
@@ -172,26 +172,26 @@
                         <div class="col-lg-3">
                             <div class="ibox ">
                                 <div class="ibox-title">
-                                    <span class="label label-success float-right">Active</span>
+                                    <span class="label label-success float-right" data-i18n="active">Active</span>
                                     <h5 data-i18n="state_engine">State Engine</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins">Running</h1>
+                                    <h1 class="no-margins" data-i18n="running">Running</h1>
                                     <div class="stat-percent font-bold text-success">100% <i class="fa fa-bolt"></i></div>
-                                    <small>All systems operational</small>
+                                    <small data-i18n="operational">All systems operational</small>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="ibox ">
                                 <div class="ibox-title">
-                                    <span class="label label-info float-right">Detected</span>
+                                    <span class="label label-info float-right" data-i18n="detected">Detected</span>
                                     <h5 data-i18n="project_type">Project Type</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins project-type-label">Loading...</h1>
+                                    <h1 class="no-margins project-type-label"><span class="type-loading-placeholder" data-i18n="loading">Loading...</span></h1>
                                     <div class="stat-percent font-bold text-info"><i class="fa fa-folder-open"></i></div>
-                                    <small>Framework: <span class="project-framework-label">Loading...</span></small>
+                                    <small><span data-i18n="framework">Framework:</span> <span class="project-framework-label">Loading...</span></small>
                                 </div>
                             </div>
                         </div>
@@ -202,9 +202,9 @@
                                     <h5 data-i18n="validator">Validator</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins">0 Issues</h1>
-                                    <div class="stat-percent font-bold text-navy">Pass <i class="fa fa-check"></i></div>
-                                    <small>Last check: 2 mins ago</small>
+                                    <h1 class="no-margins" data-i18n="issues_0">0 Issues</h1>
+                                    <div class="stat-percent font-bold text-navy" data-i18n="pass">Pass <i class="fa fa-check"></i></div>
+                                    <small data-i18n="last_check">Last check: 2 mins ago</small>
                                 </div>
                             </div>
                         </div>
@@ -215,9 +215,9 @@
                                     <h5 data-i18n="integrations">Integrations</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <h1 class="no-margins">2 Active</h1>
-                                    <div class="stat-percent font-bold text-warning">Sync <i class="fa fa-plug"></i></div>
-                                    <small>Git, Telegram</small>
+                                    <h1 class="no-margins" data-i18n="active_2">2 Active</h1>
+                                    <div class="stat-percent font-bold text-warning" data-i18n="sync">Sync <i class="fa fa-plug"></i></div>
+                                    <small data-i18n="git_telegram">Git, Telegram</small>
                                 </div>
                             </div>
                         </div>
@@ -237,15 +237,15 @@
                                     <table class="table table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Status</th>
-                                            <th>Date</th>
-                                            <th>Module</th>
-                                            <th>Message</th>
+                                            <th data-i18n="status">Status</th>
+                                            <th data-i18n="date">Date</th>
+                                            <th data-i18n="module">Module</th>
+                                            <th data-i18n="message">Message</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td><span class="label label-primary">Pass</span></td>
+                                            <td><span class="label label-primary" data-i18n="pass">Pass</span></td>
                                             <td>Today 10:15 am</td>
                                             <td>Validator</td>
                                             <td>Syntax check passed for all scripts.</td>
@@ -257,7 +257,7 @@
                                             <td>Detected unused variables in project.json.</td>
                                         </tr>
                                         <tr>
-                                            <td><span class="label label-primary">Pass</span></td>
+                                            <td><span class="label label-primary" data-i18n="pass">Pass</span></td>
                                             <td>11.06.2026</td>
                                             <td>Integrations</td>
                                             <td>Telegram Bot API successfully connected.</td>
@@ -280,14 +280,14 @@
                                             <label data-i18n="client_mode">Client Mode</label>
                                             <div class="custom-control custom-switch">
                                                 <input type="checkbox" class="custom-control-input" id="clientModeSwitch">
-                                                <label class="custom-control-label" for="clientModeSwitch">Enable simple UI</label>
+                                                <label class="custom-control-label" for="clientModeSwitch" data-i18n="enable_simple_ui">Enable simple UI</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Telegram Auto-Sync</label>
+                                            <label data-i18n="telegram_autosync">Telegram Auto-Sync</label>
                                             <div class="custom-control custom-switch">
                                                 <input type="checkbox" class="custom-control-input" id="tgSyncSwitch" checked>
-                                                <label class="custom-control-label" for="tgSyncSwitch">Active</label>
+                                                <label class="custom-control-label" for="tgSyncSwitch" data-i18n="active">Active</label>
                                             </div>
                                         </div>
                                         <div style="overflow: hidden;">
@@ -307,40 +307,40 @@
                             <div class="ibox">
                                 <div class="ibox-title">
                                     <h5 data-i18n="section_projects">Projects Management</h5>
-                                    <div class="ibox-tools"><a class="btn btn-primary btn-xs">Create New Project</a></div>
+                                    <div class="ibox-tools"><a class="btn btn-primary btn-xs" data-i18n="create_new_project">Create New Project</a></div>
                                 </div>
                                 <div class="ibox-content">
                                     <table class="table table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Status</th>
-                                            <th>Project Title</th>
-                                            <th>Completion</th>
-                                            <th>Stack</th>
-                                            <th>Actions</th>
+                                            <th data-i18n="status">Status</th>
+                                            <th data-i18n="project_title">Project Title</th>
+                                            <th data-i18n="completion">Completion</th>
+                                            <th data-i18n="stack">Stack</th>
+                                            <th data-i18n="actions">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td><span class="label label-primary">Active</span></td>
+                                            <td><span class="label label-primary" data-i18n="active">Active</span></td>
                                             <td>AI Project OS Core</td>
                                             <td><small>80%</small> <div class="progress progress-mini"><div style="width: 80%;" class="progress-bar"></div></div></td>
                                             <td>Python, HTML, JS</td>
-                                            <td><a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a></td>
+                                            <td><a href="#" class="btn btn-white btn-sm" data-i18n="view"><i class="fa fa-folder"></i> View </a></td>
                                         </tr>
                                         <tr>
                                             <td><span class="label label-warning">Pending</span></td>
                                             <td>Client Landing Page</td>
                                             <td><small>20%</small> <div class="progress progress-mini"><div style="width: 20%;" class="progress-bar progress-bar-warning"></div></div></td>
                                             <td>React, Tailwind</td>
-                                            <td><a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a></td>
+                                            <td><a href="#" class="btn btn-white btn-sm" data-i18n="view"><i class="fa fa-folder"></i> View </a></td>
                                         </tr>
                                         <tr>
                                             <td><span class="label label-default">Archived</span></td>
                                             <td>Legacy Admin Panel</td>
                                             <td><small>100%</small> <div class="progress progress-mini"><div style="width: 100%;" class="progress-bar progress-bar-danger"></div></div></td>
                                             <td>Bootstrap 3</td>
-                                            <td><a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a></td>
+                                            <td><a href="#" class="btn btn-white btn-sm" data-i18n="view"><i class="fa fa-folder"></i> View </a></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -461,7 +461,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-offset-3 col-lg-9">
-                                                <button class="btn btn-sm btn-primary" type="button">Apply Changes</button>
+                                                <button class="btn btn-sm btn-primary" type="button" data-i18n="apply_changes">Apply Changes</button>
                                             </div>
                                         </div>
                                     </form>
@@ -1205,7 +1205,7 @@
             
             <div class="footer">
                 <div class="float-right">
-                    <strong>Version</strong> 2.0.0
+                    <strong data-i18n="version">Version</strong> 2.0.0
                 </div>
                 <div>
                     <strong>Copyright</strong> AI Project OS &copy; 2026
