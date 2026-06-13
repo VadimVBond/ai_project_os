@@ -44,42 +44,42 @@
                     <li>
                         <a href="#projects" class="nav-route"><i class="fa fa-folder-open"></i> <span class="nav-label" data-i18n="menu_projects">Projects</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#projects">Overview</a></li>
-                            <li><a href="#projects">Stack Detection</a></li>
-                            <li><a href="#projects">Modules</a></li>
+                            <li><a href="#projects" data-i18n="submenu_projects_overview">Overview</a></li>
+                            <li><a href="#projects-stack" data-i18n="submenu_projects_stack">Stack Detection</a></li>
+                            <li><a href="#projects-modules" data-i18n="submenu_projects_modules">Modules</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#reports" class="nav-route"><i class="fa fa-bar-chart-o"></i> <span class="nav-label" data-i18n="menu_reports">Reports</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#reports">Client Reports</a></li>
-                            <li><a href="#reports">Developer Reports</a></li>
-                            <li><a href="#reports">PDF Export</a></li>
+                            <li><a href="#reports" data-i18n="submenu_reports_client">Client Reports</a></li>
+                            <li><a href="#reports-dev" data-i18n="submenu_reports_dev">Developer Reports</a></li>
+                            <li><a href="#reports-pdf" data-i18n="submenu_reports_pdf">PDF Export</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#integrations" class="nav-route"><i class="fa fa-plug"></i> <span class="nav-label" data-i18n="menu_integrations">Integrations</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#integrations">Git</a></li>
-                            <li><a href="#integrations">Telegram</a></li>
-                            <li><a href="#integrations">Future Integrations</a></li>
+                            <li><a href="#integrations" data-i18n="submenu_integrations_git">Git</a></li>
+                            <li><a href="#integrations-tg" data-i18n="submenu_integrations_tg">Telegram</a></li>
+                            <li><a href="#integrations-future" data-i18n="submenu_integrations_future">Future Integrations</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#state_engine" class="nav-route"><i class="fa fa-cogs"></i> <span class="nav-label" data-i18n="menu_state_engine">State Engine</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#state_engine">Project State</a></li>
-                            <li><a href="#state_engine">Validator</a></li>
-                            <li><a href="#state_engine">Changelog</a></li>
+                            <li><a href="#state_engine" data-i18n="submenu_state_project">Project State</a></li>
+                            <li><a href="#state_engine-validator" data-i18n="submenu_state_validator">Validator</a></li>
+                            <li><a href="#state_engine-changelog" data-i18n="submenu_state_changelog">Changelog</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#settings" class="nav-route"><i class="fa fa-wrench"></i> <span class="nav-label" data-i18n="menu_settings">Settings</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="#settings">Language</a></li>
-                            <li><a href="#settings">Theme</a></li>
-                            <li><a href="#settings">Client Mode</a></li>
-                            <li><a href="#settings">Project Profile</a></li>
+                            <li><a href="#settings" data-i18n="submenu_settings_lang">Language</a></li>
+                            <li><a href="#settings-theme" data-i18n="submenu_settings_theme">Theme</a></li>
+                            <li><a href="#settings-client" data-i18n="submenu_settings_client">Client Mode</a></li>
+                            <li><a href="#settings-profile" data-i18n="submenu_settings_profile">Project Profile</a></li>
                         </ul>
                     </li>
                     <li>
@@ -280,24 +280,210 @@
                     </div>
                 </div>
                 
-                <!-- Placeholders for other sections -->
+                <!-- Placeholders for other sections with DEMO DATA -->
                 <div id="projects" class="page-section" style="display:none;">
-                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_projects">Projects Management</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="section_projects">Projects Management</h5>
+                                    <div class="ibox-tools"><a class="btn btn-primary btn-xs">Create New Project</a></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Status</th>
+                                            <th>Project Title</th>
+                                            <th>Completion</th>
+                                            <th>Stack</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><span class="label label-primary">Active</span></td>
+                                            <td>AI Project OS Core</td>
+                                            <td><small>80%</small> <div class="progress progress-mini"><div style="width: 80%;" class="progress-bar"></div></div></td>
+                                            <td>Python, HTML, JS</td>
+                                            <td><a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-warning">Pending</span></td>
+                                            <td>Client Landing Page</td>
+                                            <td><small>20%</small> <div class="progress progress-mini"><div style="width: 20%;" class="progress-bar progress-bar-warning"></div></div></td>
+                                            <td>React, Tailwind</td>
+                                            <td><a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-default">Archived</span></td>
+                                            <td>Legacy Admin Panel</td>
+                                            <td><small>100%</small> <div class="progress progress-mini"><div style="width: 100%;" class="progress-bar progress-bar-danger"></div></div></td>
+                                            <td>Bootstrap 3</td>
+                                            <td><a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div id="reports" class="page-section" style="display:none;">
-                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_reports">System Reports</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="section_reports">System Reports</h5>
+                                </div>
+                                <div class="ibox-content" id="ibox-content">
+                                    <div id="vertical-timeline" class="vertical-container dark-timeline">
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon navy-bg"><i class="fa fa-briefcase"></i></div>
+                                            <div class="vertical-timeline-content">
+                                                <h2>Validator Check Complete</h2>
+                                                <p>All scripts in `scripts/core/` have successfully passed syntax and dependency validation.</p>
+                                                <span class="vertical-date"> Today <br/> <small>10:15 am</small> </span>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon yellow-bg"><i class="fa fa-warning"></i></div>
+                                            <div class="vertical-timeline-content">
+                                                <h2>JSON Schema Warning</h2>
+                                                <p>Missing translation keys in `data/i18n.json` for French language pack.</p>
+                                                <span class="vertical-date"> Yesterday <br/> <small>08:30 pm</small> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div id="integrations" class="page-section" style="display:none;">
-                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_integrations">Connected Integrations</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="section_integrations">Connected Integrations</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <ul class="list-group clear-list m-t">
+                                        <li class="list-group-item fist-item">
+                                            <span class="float-right"><span class="label label-primary">Connected</span></span>
+                                            <i class="fa fa-github"></i> GitHub API Sync
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="float-right"><span class="label label-primary">Connected</span></span>
+                                            <i class="fa fa-telegram"></i> Telegram Bot Alerting
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="float-right"><span class="label label-default">Offline</span></span>
+                                            <i class="fa fa-slack"></i> Slack Webhooks
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div id="state_engine" class="page-section" style="display:none;">
-                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_state_engine">State Engine Control</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="section_state_engine">State Engine Control</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="text-center">
+                                                <img alt="image" class="rounded-circle m-t-xs img-fluid" src="img/profile_big.jpg" style="max-width: 100px;">
+                                                <div class="m-t-xs font-bold">Engine Kernel</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <h3><strong>Process ID: 10245</strong></h3>
+                                            <p><i class="fa fa-circle text-navy"></i> Stable - Running for 14 hours</p>
+                                            <p>The state engine continuously monitors file changes in the workspace and updates the virtual state tree in memory. Automatic backups are enabled.</p>
+                                            <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Force Sync</button>
+                                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-stop"></i> Restart Engine</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div id="settings" class="page-section" style="display:none;">
-                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_settings">Global Settings</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="section_settings">Global Settings</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <form>
+                                        <div class="form-group row"><label class="col-lg-3 col-form-label">Project Name</label>
+                                            <div class="col-lg-9"><input type="text" placeholder="AI Project OS" class="form-control"></div>
+                                        </div>
+                                        <div class="form-group row"><label class="col-lg-3 col-form-label">Admin Email</label>
+                                            <div class="col-lg-9"><input type="email" placeholder="admin@example.com" class="form-control"></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-offset-3 col-lg-9">
+                                                <div class="i-checks"><label> <input type="checkbox" value="" checked> <i></i> Enable Debug Logging </label></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-offset-3 col-lg-9">
+                                                <button class="btn btn-sm btn-primary" type="button">Apply Changes</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Sub-menu placeholders -->
+                <div id="projects-stack" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_projects_stack">Stack Detection</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                <div id="projects-modules" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_projects_modules">Modules</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                
+                <div id="reports-dev" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_reports_dev">Developer Reports</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                <div id="reports-pdf" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_reports_pdf">PDF Export</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                
+                <div id="integrations-tg" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_integrations_tg">Telegram</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                <div id="integrations-future" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_integrations_future">Future Integrations</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                
+                <div id="state_engine-validator" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_state_validator">Validator</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                <div id="state_engine-changelog" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_state_changelog">Changelog</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                
+                <div id="settings-theme" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_settings_theme">Theme</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                <div id="settings-client" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_settings_client">Client Mode</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                <div id="settings-profile" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_settings_profile">Project Profile</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+
                 <div id="about" class="page-section" style="display:none;">
-                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_about">About AI Project OS</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="section_about">About AI Project OS</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>AI Project OS Version 2.0.0</strong></h2>
+                                    <p>Developed to accelerate project bootstrapping by deeply integrating AI with a traditional file-based workflow. The system provides zero-configuration environment setup, real-time code validation, and a JSON-driven UI.</p>
+                                    <br>
+                                    <p><strong>License:</strong> MIT License</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             

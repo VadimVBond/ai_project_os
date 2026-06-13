@@ -106,3 +106,21 @@ body.dark-mode .footer {
 body.dark-mode label {
     color: #dfdfdf;
 }
+
+/* Timeline */
+body.dark-mode .vertical-timeline-content {
+    background-color: #293846;
+    color: #dfdfdf;
+}
+body.dark-mode .vertical-timeline-content p {
+    color: #dfdfdf;
+}
+body.dark-mode .vertical-timeline-content::before {
+    border-right-color: #293846;
+}
+body.dark-mode .vertical-date {
+    color: #dfdfdf;
+}
+body.dark-mode .vertical-date small {
+    color: #a7b1c2;
+}
