@@ -1,0 +1,108 @@
+/* AI Project OS - True Dark Mode Overrides */
+body.dark-mode {
+    color: #dfdfdf;
+    background-color: #2f4050; /* Same as sidebar */
+}
+
+/* Page Wrapper and Backgrounds */
+body.dark-mode #page-wrapper,
+body.dark-mode .gray-bg {
+    background-color: #232c33;
+}
+
+body.dark-mode .white-bg {
+    background-color: #2f4050;
+    color: #dfdfdf;
+}
+
+/* Navbar */
+body.dark-mode .navbar-static-top {
+    background: #2f4050;
+    border-bottom: 1px solid #1f2b36 !important;
+}
+
+body.dark-mode .nav > li > a {
+    color: #a7b1c2;
+}
+body.dark-mode .nav > li > a:hover, 
+body.dark-mode .nav > li > a:focus {
+    background-color: #293846;
+    color: #ffffff;
+}
+body.dark-mode .navbar-top-links li a {
+    color: #dfdfdf;
+}
+
+/* Dashboard Header */
+body.dark-mode .dashboard-header {
+    border-top: 0;
+    border-bottom: 1px solid #1f2b36 !important;
+}
+body.dark-mode .dashboard-header h2,
+body.dark-mode .page-title {
+    color: #ffffff;
+}
+
+/* Ibox (Cards) */
+body.dark-mode .ibox-title {
+    background-color: #2f4050;
+    color: #ffffff;
+    border-color: #1f2b36;
+}
+body.dark-mode .ibox-content {
+    background-color: #2f4050;
+    color: #dfdfdf;
+    border-color: #1f2b36;
+}
+body.dark-mode .ibox-content h1,
+body.dark-mode .ibox-content h2,
+body.dark-mode .ibox-content h3,
+body.dark-mode .ibox-content h4,
+body.dark-mode .ibox-content h5 {
+    color: #ffffff;
+}
+
+/* Tables */
+body.dark-mode .table {
+    color: #dfdfdf;
+}
+body.dark-mode .table-hover > tbody > tr:hover {
+    background-color: #293846;
+}
+body.dark-mode .table > thead > tr > th, 
+body.dark-mode .table > tbody > tr > th, 
+body.dark-mode .table > tfoot > tr > th, 
+body.dark-mode .table > thead > tr > td, 
+body.dark-mode .table > tbody > tr > td, 
+body.dark-mode .table > tfoot > tr > td {
+    border-top: 1px solid #1f2b36;
+}
+body.dark-mode .table > thead > tr > th {
+    border-bottom: 2px solid #1f2b36;
+}
+
+/* Dropdowns */
+body.dark-mode .dropdown-menu {
+    background-color: #2f4050;
+    border: 1px solid #1f2b36;
+}
+body.dark-mode .dropdown-item {
+    color: #dfdfdf;
+}
+body.dark-mode .dropdown-item:hover, 
+body.dark-mode .dropdown-item:focus {
+    background-color: #293846;
+    color: #ffffff;
+}
+
+/* Footer */
+body.dark-mode .footer {
+    background: #2f4050;
+    border-top: 1px solid #1f2b36;
+    color: #dfdfdf;
+}
+
+/* Forms */
+body.dark-mode label {
+    color: #dfdfdf;
+}

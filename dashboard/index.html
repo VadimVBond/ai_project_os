@@ -1,567 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Project OS v2.0</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --sidebar-width: 260px;
-            --sidebar-collapsed-width: 70px;
-        }
-
-        [data-theme="dark"] {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: #334155;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            display: flex;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Sidebar */
-        aside {
-            width: var(--sidebar-width);
-            background: var(--card-bg);
-            border-right: 1px solid var(--border);
-            padding: 1.5rem 1rem;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100vh;
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
-            overflow: hidden;
-        }
-
-        aside.collapsed {
-            width: var(--sidebar-collapsed-width);
-        }
-
-        .sidebar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            white-space: nowrap;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: opacity 0.2s;
-        }
-
-        aside.collapsed .logo-text {
-            display: none;
-        }
-
-        .toggle-btn {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-radius: 0.5rem;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .toggle-btn:hover { background: var(--border); }
-
-        nav { flex: 1; }
-        nav ul { list-style: none; padding: 0; margin: 0; }
-        nav li { margin-bottom: 0.5rem; }
-        nav a {
-            text-decoration: none;
-            color: var(--text);
-            padding: 0.75rem 0.85rem;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: all 0.2s;
-            font-size: 0.9375rem;
-            white-space: nowrap;
-        }
-        nav a:hover, nav a.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        aside.collapsed nav span:not(.icon) {
-            display: none;
-        }
-
-        .quick-actions {
-            border-top: 1px solid var(--border);
-            padding: 1rem 0;
-            margin-top: auto;
-        }
-        
-        aside.collapsed .quick-actions span:not(.icon) { 
-            display: none; 
-        }
-        
-        aside.collapsed .btn {
-            padding: 0.6rem 0;
-            width: 40px !important;
-            margin: 0 auto;
-        }
-
-        /* Main Content */
-        main {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 2rem;
-            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            width: calc(100% - var(--sidebar-width));
-        }
-
-        main.expanded {
-            margin-left: var(--sidebar-collapsed-width);
-            width: calc(100% - var(--sidebar-collapsed-width));
-        }
-        
-        .view-section {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .view-section.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .controls {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        select {
-            padding: 0.5rem;
-            border-radius: 0.4rem;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--text);
-        }
-
-        /* Grid & Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .progress-circle {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .progress-bar-flat {
-            height: 8px;
-            background: var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 0.5rem;
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--primary);
-            transition: width 0.5s ease;
-        }
-
-        .module-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .module-row:last-child { border: none; }
-
-        .badge {
-            font-size: 0.7rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .badge-done { background: #dcfce7; color: #166534; }
-        .badge-active { background: #dbeafe; color: #1e40af; }
-        .badge-todo { background: #f1f5f9; color: #475569; }
-
-        #loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .hidden { display: none !important; }
-        
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/dashboard/">
+    <title>AI Project OS | Dashboard</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- Gritter -->
+    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Custom Dark Mode -->
+    <link href="css/dark-mode.css" rel="stylesheet">
 </head>
-<body data-theme="light">
-    <div id="loading-overlay">Loading AI Project OS...</div>
-
-    <aside id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <span>🚀</span> <span class="logo-text">AI Project OS</span>
+<body class="md-skin">
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold">Project Admin</span>
+                                <span class="text-muted text-xs block">AI Project OS <b class="caret"></b></span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="../index.html">Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            AIP
+                        </div>
+                    </li>
+                    <li class="active">
+                        <a href="#dashboard" class="nav-route"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="menu_dashboard">Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="nav-route"><i class="fa fa-folder-open"></i> <span class="nav-label" data-i18n="menu_projects">Projects</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="#projects">Overview</a></li>
+                            <li><a href="#projects">Stack Detection</a></li>
+                            <li><a href="#projects">Modules</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#reports" class="nav-route"><i class="fa fa-bar-chart-o"></i> <span class="nav-label" data-i18n="menu_reports">Reports</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="#reports">Client Reports</a></li>
+                            <li><a href="#reports">Developer Reports</a></li>
+                            <li><a href="#reports">PDF Export</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#integrations" class="nav-route"><i class="fa fa-plug"></i> <span class="nav-label" data-i18n="menu_integrations">Integrations</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="#integrations">Git</a></li>
+                            <li><a href="#integrations">Telegram</a></li>
+                            <li><a href="#integrations">Future Integrations</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#state_engine" class="nav-route"><i class="fa fa-cogs"></i> <span class="nav-label" data-i18n="menu_state_engine">State Engine</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="#state_engine">Project State</a></li>
+                            <li><a href="#state_engine">Validator</a></li>
+                            <li><a href="#state_engine">Changelog</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#settings" class="nav-route"><i class="fa fa-wrench"></i> <span class="nav-label" data-i18n="menu_settings">Settings</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="#settings">Language</a></li>
+                            <li><a href="#settings">Theme</a></li>
+                            <li><a href="#settings">Client Mode</a></li>
+                            <li><a href="#settings">Project Profile</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav-route"><i class="fa fa-info-circle"></i> <span class="nav-label" data-i18n="menu_about">About</span></a>
+                    </li>
+                </ul>
             </div>
-            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active" id="nav-dashboard"><span class="icon">📊</span> <span>Dashboard</span></a></li>
-                <li><a href="#" id="nav-reports"><span class="icon">📄</span> <span>Reports</span></a></li>
-                <li><a href="#" id="nav-settings"><span class="icon">⚙️</span> <span>Settings</span></a></li>
-            </ul>
         </nav>
-        <div class="quick-actions">
-            <button class="btn" style="width: 100%;" onclick="alert('Exporting PDF...')">
-                <span class="icon">📥</span> <span>Export PDF</span>
-            </button>
-        </div>
-    </aside>
 
-    <main id="main-content">
-        <header>
-            <div>
-                <h1 id="project-name">Project Name</h1>
-                <div id="project-meta" style="color: var(--text-muted); font-size: 0.875rem;"></div>
-            </div>
-            <div class="controls">
-                <select id="lang-select">
-                    <option value="en">English</option>
-                    <option value="ru">Русский</option>
-                    <option value="ua">Українська</option>
-                </select>
-                <select id="mode-select">
-                    <option value="developer">Developer</option>
-                    <option value="client">Client</option>
-                </select>
-            </div>
-        </header>
-
-        <!-- Dashboard View -->
-        <div id="view-dashboard" class="view-section active">
-            <div class="grid">
-                <!-- Progress Card -->
-                <div class="card">
-                    <h2 id="t-overall-progress">Overall Progress</h2>
-                    <div class="progress-circle" id="total-progress-pct">0%</div>
-                    <div style="display: flex; justify-content: space-around; text-align: center;">
-                        <div><div id="stat-done" style="font-weight: 700;">0</div><div id="t-done" style="font-size: 0.7rem; color: var(--text-muted);">DONE</div></div>
-                        <div><div id="stat-active" style="font-weight: 700;">0</div><div id="t-active" style="font-size: 0.7rem; color: var(--text-muted);">ACTIVE</div></div>
-                        <div><div id="stat-todo" style="font-weight: 700;">0</div><div id="t-todo" style="font-size: 0.7rem; color: var(--text-muted);">TODO</div></div>
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     </div>
-                </div>
-
-                <!-- Milestones Card -->
-                <div class="card">
-                    <h2 id="t-milestones">Milestones</h2>
-                    <div id="milestones-list"></div>
-                </div>
-
-                <!-- Modules Card (Developer Mode only) -->
-                <div class="card dev-only">
-                    <h2 id="t-modules">Modules</h2>
-                    <div id="modules-list"></div>
-                </div>
-
-                <!-- Activity Card -->
-                <div class="card dev-only">
-                    <h2 id="t-recent-activity">Recent Activity</h2>
-                    <div id="activity-list" style="max-height: 250px; overflow-y: auto;"></div>
-                </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">AI Project OS</span>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-language"></i> <span class="current-language-label">EN</span> <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                <li><a href="#" class="dropdown-item lang-toggle" data-lang="en">English (EN)</a></li>
+                                <li><a href="#" class="dropdown-item lang-toggle" data-lang="ru">Русский (RU)</a></li>
+                                <li><a href="#" class="dropdown-item lang-toggle" data-lang="ua">Українська (UA)</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-moon-o"></i> Theme <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                <li><a href="#" class="dropdown-item theme-toggle" data-theme="light">Light Mode</a></li>
+                                <li><a href="#" class="dropdown-item theme-toggle" data-theme="dark">Dark Mode</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user"></i> Mode <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                <li><a href="#" class="dropdown-item">Client Mode</a></li>
+                                <li><a href="#" class="dropdown-item">Developer Mode</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="../index.html">
+                                <i class="fa fa-sign-out"></i> Exit
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-        </div>
-
-        <!-- Reports View -->
-        <div id="view-reports" class="view-section">
-            <div class="card">
-                <h2 id="t-reports-title">Project Reports</h2>
-                <div class="grid">
-                    <div class="card" style="cursor: pointer;" onclick="alert('Generating Client Report...')">
-                        <h3>Client Report</h3>
-                        <p style="font-size: 0.875rem; color: var(--text-muted);">Simplified overview for stakeholders.</p>
-                        <button class="btn" style="width: 100%;">Generate</button>
-                    </div>
-                    <div class="card dev-only" style="cursor: pointer;" onclick="alert('Generating Dev Report...')">
-                        <h3>Developer Report</h3>
-                        <p style="font-size: 0.875rem; color: var(--text-muted);">Detailed technical progress and logs.</p>
-                        <button class="btn" style="width: 100%;">Generate</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Settings View -->
-        <div id="view-settings" class="view-section">
-            <div class="card">
-                <h2 id="t-settings-title">System Settings</h2>
-                <div style="max-width: 400px;">
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Theme</label>
-                        <select id="theme-select" style="width: 100%; padding: 0.75rem;">
-                            <option value="light">Light</option>
-                            <option value="dark">Dark</option>
-                        </select>
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Default View</label>
-                        <select id="default-mode-select" style="width: 100%; padding: 0.75rem;">
-                            <option value="developer">Developer</option>
-                            <option value="client">Client</option>
-                        </select>
-                    </div>
-                    <button class="btn" onclick="alert('Settings saved!')">Save Settings</button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        let projectData = null;
-        let settings = null;
-        let translations = null;
-
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const main = document.getElementById('main-content');
-            sidebar.classList.toggle('collapsed');
-            main.classList.toggle('expanded');
-        }
-
-        function switchView(viewId) {
-            // Update Navigation
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            document.getElementById(`nav-${viewId}`).classList.add('active');
-
-            // Update Sections
-            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
-            document.getElementById(`view-${viewId}`).classList.add('active');
-        }
-
-        async function init() {
-            try {
-                const [dataRes, setRes, i18nRes] = await Promise.all([
-                    fetch('../data/project.json'),
-                    fetch('../data/settings.json'),
-                    fetch('../data/i18n.json')
-                ]);
-
-                projectData = await dataRes.json();
-                settings = await setRes.json();
-                translations = await i18nRes.json();
-
-                setupNavigation();
-                setupControls();
-                applySettings();
-                render();
-                
-                document.getElementById('loading-overlay').classList.add('hidden');
-            } catch (err) {
-                console.error(err);
-                document.getElementById('loading-overlay').innerHTML = "Error loading data. Check console.";
-            }
-        }
-
-        function setupNavigation() {
-            document.getElementById('nav-dashboard').addEventListener('click', (e) => { e.preventDefault(); switchView('dashboard'); });
-            document.getElementById('nav-reports').addEventListener('click', (e) => { e.preventDefault(); switchView('reports'); });
-            document.getElementById('nav-settings').addEventListener('click', (e) => { e.preventDefault(); switchView('settings'); });
-        }
-
-        function setupControls() {
-            const langSelect = document.getElementById('lang-select');
-            const modeSelect = document.getElementById('mode-select');
-
-            langSelect.value = settings.system.language;
-            modeSelect.value = settings.system.mode;
-
-            langSelect.addEventListener('change', (e) => {
-                settings.system.language = e.target.value;
-                render();
-            });
-
-            modeSelect.addEventListener('change', (e) => {
-                settings.system.mode = e.target.value;
-                applySettings();
-                render();
-            });
-
-            const themeSelect = document.getElementById('theme-select');
-            if (themeSelect) {
-                themeSelect.addEventListener('change', (e) => {
-                    settings.system.theme = e.target.value;
-                    applySettings();
-                });
-            }
-        }
-
-        function applySettings() {
-            document.body.setAttribute('data-theme', settings.system.theme || 'light');
-            const devElements = document.querySelectorAll('.dev-only');
-            devElements.forEach(el => {
-                if (settings.system.mode === 'client') el.classList.add('hidden');
-                else el.classList.remove('hidden');
-            });
-        }
-
-        function t(key) {
-            const lang = settings.system.language;
-            return (translations[lang] && translations[lang][key]) ? translations[lang][key] : key;
-        }
-
-        function render() {
-            const lang = settings.system.language;
             
-            // Translations
-            document.getElementById('t-overall-progress').innerText = t('overall_progress');
-            document.getElementById('t-modules').innerText = t('modules');
-            document.getElementById('t-recent-activity').innerText = t('recent_activity');
-            document.getElementById('t-milestones').innerText = t('milestones');
-            document.getElementById('t-done').innerText = t('done');
-            document.getElementById('t-active').innerText = t('active');
-            document.getElementById('t-todo').innerText = t('todo');
-
-            // Project Info
-            document.getElementById('project-name').innerText = projectData.project.name;
-            document.getElementById('project-meta').innerText = `${t('version')} ${projectData.project.version} | ${projectData.project.phase}`;
-
-            // Stats
-            document.getElementById('total-progress-pct').innerText = `${projectData.summary.progress_total}%`;
-            document.getElementById('stat-done').innerText = projectData.summary.done;
-            document.getElementById('stat-active').innerText = projectData.summary.in_progress;
-            document.getElementById('stat-todo').innerText = projectData.summary.todo;
-
-            // Modules
-            const modContainer = document.getElementById('modules-list');
-            modContainer.innerHTML = projectData.modules.map(m => `
-                <div class="module-row">
-                    <div>
-                        <div style="font-weight: 600;">${m.name}</div>
-                        <div class="progress-bar-flat" style="width: 150px;">
-                            <div class="progress-fill" style="width: ${m.progress}%"></div>
+            <div class="row border-bottom white-bg dashboard-header">
+                <div class="col-sm-12">
+                    <h2 class="page-title" data-i18n="dashboard_title">Dashboard Overview</h2>
+                    <small class="page-desc" data-i18n="dashboard_desc">System status and core metrics.</small>
+                </div>
+            </div>
+            
+            <div class="wrapper wrapper-content">
+                
+                <!-- Dashboard Section -->
+                <div id="dashboard" class="page-section">
+                    <!-- Metrics Row -->
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <span class="label label-success float-right">Active</span>
+                                    <h5 data-i18n="state_engine">State Engine</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <h1 class="no-margins">Running</h1>
+                                    <div class="stat-percent font-bold text-success">100% <i class="fa fa-bolt"></i></div>
+                                    <small>All systems operational</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <span class="label label-info float-right">Detected</span>
+                                    <h5 data-i18n="project_type">Project Type</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <h1 class="no-margins project-type-label">Loading...</h1>
+                                    <div class="stat-percent font-bold text-info"><i class="fa fa-folder-open"></i></div>
+                                    <small>Framework: <span class="project-framework-label">Loading...</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <span class="label label-primary float-right">System</span>
+                                    <h5 data-i18n="validator">Validator</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <h1 class="no-margins">0 Issues</h1>
+                                    <div class="stat-percent font-bold text-navy">Pass <i class="fa fa-check"></i></div>
+                                    <small>Last check: 2 mins ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <span class="label label-warning float-right">Modules</span>
+                                    <h5 data-i18n="integrations">Integrations</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <h1 class="no-margins">2 Active</h1>
+                                    <div class="stat-percent font-bold text-warning">Sync <i class="fa fa-plug"></i></div>
+                                    <small>Git, Telegram</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <span class="badge badge-${m.status}">${m.status}</span>
-                </div>
-            `).join('');
 
-            // Milestones
-            const milContainer = document.getElementById('milestones-list');
-            milContainer.innerHTML = projectData.milestones.map(m => `
-                <div class="module-row">
-                    <span style="${m.status === 'done' ? 'text-decoration: line-through; opacity: 0.5' : ''}">${m.name}</span>
-                    <span class="badge badge-${m.status}">${m.status}</span>
-                </div>
-            `).join('');
+                    <!-- Reports Table Row -->
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="recent_reports">Recent Reports</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Module</th>
+                                            <th>Message</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><span class="label label-primary">Pass</span></td>
+                                            <td>Today 10:15 am</td>
+                                            <td>Validator</td>
+                                            <td>Syntax check passed for all scripts.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-warning">Warn</span></td>
+                                            <td>Yesterday 08:30 pm</td>
+                                            <td>State Engine</td>
+                                            <td>Detected unused variables in project.json.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">Pass</span></td>
+                                            <td>11.06.2026</td>
+                                            <td>Integrations</td>
+                                            <td>Telegram Bot API successfully connected.</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-            // Activity
-            const actContainer = document.getElementById('activity-list');
-            actContainer.innerHTML = projectData.logbook.slice().reverse().map(log => `
-                <div style="margin-bottom: 1rem; font-size: 0.85rem; border-left: 2px solid var(--primary); padding-left: 0.75rem;">
-                    <div style="color: var(--text-muted); font-weight: 600;">${log.date}</div>
-                    <div>${log.event}</div>
+                        <!-- Settings Form Placeholder -->
+                        <div class="col-lg-4">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <h5 data-i18n="quick_settings">Quick Settings</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label data-i18n="client_mode">Client Mode</label>
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="clientModeSwitch">
+                                                <label class="custom-control-label" for="clientModeSwitch">Enable simple UI</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Telegram Auto-Sync</label>
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="tgSyncSwitch" checked>
+                                                <label class="custom-control-label" for="tgSyncSwitch">Active</label>
+                                            </div>
+                                        </div>
+                                        <div style="overflow: hidden;">
+                                            <button class="btn btn-sm btn-primary float-right" type="button"><strong data-i18n="save_config">Save config</strong></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            `).join('');
-        }
-
-        init();
-    </script>
-</body>
-</html>
-</script>
-</body>
-</html>
-nt-weight: 600;">${log.date}</div>
-                    <div>${log.event}</div>
+                
+                <!-- Placeholders for other sections -->
+                <div id="projects" class="page-section" style="display:none;">
+                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_projects">Projects Management</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
                 </div>
-            `).join('');
-        }
+                <div id="reports" class="page-section" style="display:none;">
+                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_reports">System Reports</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                </div>
+                <div id="integrations" class="page-section" style="display:none;">
+                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_integrations">Connected Integrations</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                </div>
+                <div id="state_engine" class="page-section" style="display:none;">
+                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_state_engine">State Engine Control</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                </div>
+                <div id="settings" class="page-section" style="display:none;">
+                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_settings">Global Settings</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                </div>
+                <div id="about" class="page-section" style="display:none;">
+                    <div class="ibox"><div class="ibox-content"><h2 data-i18n="section_about">About AI Project OS</h2><p data-i18n="placeholder_text">Content for this section will be dynamically loaded here.</p></div></div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div class="float-right">
+                    <strong>Version</strong> 2.0.0
+                </div>
+                <div>
+                    <strong>Copyright</strong> AI Project OS &copy; 2026
+                </div>
+            </div>
+        </div>
+    </div>
 
-        init();
-    </script>
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    
+    <!-- AI Project OS Core -->
+    <script src="js/core-loader.js"></script>
 </body>
 </html>
