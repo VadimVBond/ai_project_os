@@ -14,8 +14,28 @@
     <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <!-- Theme Variable System (CSS tokens + accent colors) -->
+    <link href="css/theme-variables.css" rel="stylesheet">
     <!-- Custom Dark Mode -->
     <link href="css/dark-mode.css" rel="stylesheet">
+    <!-- Right Side Theme Panel -->
+    <link href="css/theme-panel.css" rel="stylesheet">
+    <!-- 
+        CRITICAL: Apply saved theme from localStorage IMMEDIATELY (before body renders)
+        Prevents FOUC (Flash Of Unstyled Content) on page reload.
+    -->
+    <script>
+        (function() {
+            var mode   = localStorage.getItem('aip_theme_mode')   || 'system';
+            var accent = localStorage.getItem('aip_accent_color') || 'primary';
+            var isDark = (mode === 'dark') ||
+                         (mode === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) {
+                document.documentElement.classList.add('theme-preload-dark');
+            }
+            document.documentElement.setAttribute('data-accent', accent);
+        })();
+    </script>
 </head>
 <body class="md-skin">
     <div id="wrapper">
@@ -451,22 +471,718 @@
                     </div>
                 </div>
 
-                <!-- Sub-menu placeholders -->
-                <div id="projects-stack" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_projects_stack">Stack Detection</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                <div id="projects-modules" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_projects_modules">Modules</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                
-                <div id="reports-dev" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_reports_dev">Developer Reports</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                <div id="reports-pdf" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_reports_pdf">PDF Export</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                
-                <div id="integrations-tg" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_integrations_tg">Telegram</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                <div id="integrations-future" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_integrations_future">Future Integrations</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                
-                <div id="state_engine-validator" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_state_validator">Validator</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                <div id="state_engine-changelog" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_state_changelog">Changelog</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                
-                <div id="settings-theme" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_settings_theme">Theme</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                <div id="settings-client" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_settings_client">Client Mode</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
-                <div id="settings-profile" class="page-section" style="display:none;"><div class="row"><div class="col-lg-12"><div class="ibox"><div class="ibox-content"><h2 data-i18n="submenu_settings_profile">Project Profile</h2><p data-i18n="under_construction">This section is currently under construction.</p></div></div></div></div></div>
+                <!-- ═══════════════════════════════════════════════════ -->
+                <!-- FEATURE SPEC PAGES (replaces stubs)               -->
+                <!-- ═══════════════════════════════════════════════════ -->
+
+                <!-- ── projects-stack ── -->
+                <div id="projects-stack" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-search text-navy"></i> Stack Detection</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Automatic Technology Stack Detection</strong></h2>
+                                    <p class="text-muted">Automatic identification of languages, frameworks and tools used in a connected project.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Eliminate manual stack documentation</li>
+                                                <li><i class="fa fa-angle-right"></i> Feed AI context with accurate tech metadata</li>
+                                                <li><i class="fa fa-angle-right"></i> Detect version mismatches and deprecations</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As a developer I open a project and immediately see its tech stack without reading through files manually."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Scan <code>package.json</code>, <code>requirements.txt</code>, <code>composer.json</code>, <code>Gemfile</code></td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Detect primary language by file extension frequency</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Identify frameworks: React, Vue, Django, Laravel, etc.</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>4</td><td>Display detected versions and flag outdated dependencies</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Export stack snapshot to <code>data/project.json → stack</code></td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>FileSystem scan → Parser Engine → stack{} object → project.json → Dashboard UI</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Uses <strong>data/project.json</strong> as output target. Feeds into <strong>Projects Overview</strong> and <strong>State Engine</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-eye-slash"></i> Current State</h5></div>
+                                <div class="ibox-content text-center" style="padding: 40px 20px;">
+                                    <i class="fa fa-search" style="font-size: 48px; color: #e0e0e0;"></i>
+                                    <h4 class="m-t-md text-muted">No scan results yet</h4>
+                                    <p class="text-muted small">Connect a project folder to trigger automatic stack analysis. Detection runs once on project load.</p>
+                                    <div class="m-t text-left">
+                                        <p class="text-muted small"><strong>Expected output:</strong></p>
+                                        <code style="font-size:11px;">{ "language": "JavaScript", "framework": "React 18.2", "packageManager": "npm" }</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── projects-modules ── -->
+                <div id="projects-modules" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-cubes text-navy"></i> Project Modules</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Module Registry & Dependency Map</strong></h2>
+                                    <p class="text-muted">Visual registry of all project modules, their status, dependencies and health metrics.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Track which modules are active, disabled or broken</li>
+                                                <li><i class="fa fa-angle-right"></i> Visualize inter-module dependencies</li>
+                                                <li><i class="fa fa-angle-right"></i> Enable/disable modules without editing code</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As an architect I want to see all system modules on one screen and understand which depend on each other."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Load module list from <code>data/modules.json</code></td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Display status badge per module: Active / Disabled / Error</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Toggle module enabled state and persist to JSON</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>4</td><td>Render dependency arrows between modules</td><td><span class="label label-primary">P2</span></td></tr>
+                                            <tr><td>5</td><td>Show last updated timestamp per module</td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>data/modules.json → Module Loader → UI Cards → Toggle → Write back to JSON</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Reads <strong>data/modules.json</strong>. Integrates with <strong>State Engine</strong> for health checks.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-eye-slash"></i> Current State</h5></div>
+                                <div class="ibox-content text-center" style="padding: 40px 20px;">
+                                    <i class="fa fa-cubes" style="font-size: 48px; color: #e0e0e0;"></i>
+                                    <h4 class="m-t-md text-muted">No modules registered</h4>
+                                    <p class="text-muted small">Create <code>data/modules.json</code> with your module definitions to populate this view.</p>
+                                    <div class="m-t text-left">
+                                        <p class="text-muted small"><strong>Expected structure:</strong></p>
+                                        <code style="font-size:11px;">[{"id":"core","status":"active","deps":["state"]}]</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── reports-dev ── -->
+                <div id="reports-dev" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-terminal text-navy"></i> Developer Reports</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Technical System & Code Quality Reports</strong></h2>
+                                    <p class="text-muted">Detailed technical reports for developers: errors, warnings, performance, code coverage and CI results.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Aggregate all technical diagnostics in one view</li>
+                                                <li><i class="fa fa-angle-right"></i> Provide actionable error and warning entries</li>
+                                                <li><i class="fa fa-angle-right"></i> Track code quality metrics over time</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As a developer I need a single place to see all system errors, lint warnings, and test results without switching tools."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Render log stream from Validator with severity levels</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Filter by: Error / Warning / Info / All</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Display file path + line number for each issue</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>4</td><td>Show metrics chart: issues over last 7 days</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Export full log as JSON or TXT</td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>Validator Engine → logs[] → data/reports-dev.json → Timeline UI + Filter Panel</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Reads from <strong>State Engine → Validator</strong>. Shares data schema with <strong>Client Reports</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-eye-slash"></i> Current State</h5></div>
+                                <div class="ibox-content text-center" style="padding: 40px 20px;">
+                                    <i class="fa fa-terminal" style="font-size: 48px; color: #e0e0e0;"></i>
+                                    <h4 class="m-t-md text-muted">No developer logs</h4>
+                                    <p class="text-muted small">Run the Validator to generate diagnostic entries. Reports auto-populate on each check cycle.</p>
+                                    <div class="m-t text-left">
+                                        <p class="text-muted small"><strong>Expected entry format:</strong></p>
+                                        <code style="font-size:11px;">{"level":"warn","file":"app.js","line":42,"msg":"..."}</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── reports-pdf ── -->
+                <div id="reports-pdf" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-file-pdf-o text-navy"></i> PDF Export</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Report PDF Generation & Export</strong></h2>
+                                    <p class="text-muted">Generate branded PDF reports from project data for client delivery or archival.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Deliver professional reports to clients</li>
+                                                <li><i class="fa fa-angle-right"></i> Archive project snapshots as static documents</li>
+                                                <li><i class="fa fa-angle-right"></i> One-click export without extra tools</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As a PM I want to export the current project status as a branded PDF and send it to the client in 30 seconds."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Select report sections to include in PDF</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Render PDF with project logo and color scheme</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Support Client Mode (technical details hidden)</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>4</td><td>Timestamp and version in footer</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Schedule auto-export to file system</td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>Report selection UI → Template Engine → PDF renderer (html2pdf / Puppeteer) → File download</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Consumes data from <strong>Client Reports</strong> and <strong>Developer Reports</strong>. Respects <strong>Client Mode</strong> setting.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-eye-slash"></i> Current State</h5></div>
+                                <div class="ibox-content text-center" style="padding: 40px 20px;">
+                                    <i class="fa fa-file-pdf-o" style="font-size: 48px; color: #e0e0e0;"></i>
+                                    <h4 class="m-t-md text-muted">No PDF templates configured</h4>
+                                    <p class="text-muted small">PDF export will be available once the template engine and report sections are implemented.</p>
+                                    <div class="m-t text-left">
+                                        <p class="text-muted small"><strong>Planned output:</strong></p>
+                                        <code style="font-size:11px;">project-report-2026-06-13.pdf (~2 pages)</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── integrations-tg ── -->
+                <div id="integrations-tg" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-send text-navy"></i> Telegram Integration</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Telegram Bot Notifications & Commands</strong></h2>
+                                    <p class="text-muted">Bidirectional Telegram integration: push system alerts and receive project commands via bot.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Instant alerts on errors and deployments</li>
+                                                <li><i class="fa fa-angle-right"></i> Remote project status queries via commands</li>
+                                                <li><i class="fa fa-angle-right"></i> Client-friendly report delivery</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As a developer I want to receive immediate Telegram messages when the Validator detects critical errors in the project."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Configure Bot Token and Chat ID via settings form</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Send alert on Validator ERROR or WARNING events</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Support bot commands: <code>/status</code>, <code>/report</code>, <code>/ping</code></td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>4</td><td>Configure per-event notification rules</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Send daily summary at scheduled time</td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>State Engine event → Notification Router → Telegram Bot API → User chat</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Subscribes to events from <strong>State Engine</strong> and <strong>Validator</strong>. Config stored in <strong>data/settings.json → telegram</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-send"></i> Connection Status</h5></div>
+                                <div class="ibox-content text-center" style="padding: 40px 20px;">
+                                    <i class="fa fa-send-o" style="font-size: 48px; color: #e0e0e0;"></i>
+                                    <h4 class="m-t-md text-muted">Bot not configured</h4>
+                                    <p class="text-muted small">Enter your Bot Token and Chat ID in <strong>Settings → Project Profile</strong> to activate Telegram notifications.</p>
+                                    <div class="m-t text-left">
+                                        <p class="text-muted small"><strong>Required config:</strong></p>
+                                        <code style="font-size:11px;">BOT_TOKEN, CHAT_ID, NOTIFY_LEVEL</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── integrations-future ── -->
+                <div id="integrations-future" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-plug text-navy"></i> Future Integrations</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Integration Roadmap & Extension Points</strong></h2>
+                                    <p class="text-muted">Planned third-party integrations and the plugin interface contract for extending the system.</p>
+                                    <hr>
+                                    <h4><i class="fa fa-road text-navy"></i> Planned Integrations</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>Service</th><th>Type</th><th>Use Case</th><th>Status</th></tr></thead>
+                                        <tbody>
+                                            <tr><td><i class="fa fa-slack"></i> Slack</td><td>Webhook</td><td>Team notifications on deploy events</td><td><span class="label label-default">Planned</span></td></tr>
+                                            <tr><td><i class="fa fa-jira"></i> Jira</td><td>REST API</td><td>Auto-create issues from Validator errors</td><td><span class="label label-default">Planned</span></td></tr>
+                                            <tr><td><i class="fa fa-github"></i> GitHub Actions</td><td>Webhook</td><td>Trigger State Engine on push events</td><td><span class="label label-default">Planned</span></td></tr>
+                                            <tr><td><i class="fa fa-cloud"></i> Notion</td><td>API</td><td>Sync project docs to Notion workspace</td><td><span class="label label-default">Planned</span></td></tr>
+                                            <tr><td><i class="fa fa-envelope"></i> SMTP Email</td><td>SMTP</td><td>Weekly digest to stakeholders</td><td><span class="label label-default">Planned</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Plugin Interface Contract</h4>
+                                    <p>Each integration must implement the following interface:</p>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa fa-angle-right"></i> <code>connect(config)</code> — establish connection</li>
+                                        <li><i class="fa fa-angle-right"></i> <code>send(event, payload)</code> — dispatch event</li>
+                                        <li><i class="fa fa-angle-right"></i> <code>healthCheck()</code> — return connection status</li>
+                                        <li><i class="fa fa-angle-right"></i> <code>disconnect()</code> — graceful shutdown</li>
+                                    </ul>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>State Engine event → Integration Router → Adapter[service] → External API</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-plug"></i> Available Slots</h5></div>
+                                <div class="ibox-content">
+                                    <ul class="list-group clear-list m-t">
+                                        <li class="list-group-item"><span class="float-right"><span class="label label-default">Open</span></span><i class="fa fa-slack"></i> Slack</li>
+                                        <li class="list-group-item"><span class="float-right"><span class="label label-default">Open</span></span><i class="fa fa-github"></i> GitHub Actions</li>
+                                        <li class="list-group-item"><span class="float-right"><span class="label label-default">Open</span></span><i class="fa fa-cloud"></i> Notion</li>
+                                        <li class="list-group-item"><span class="float-right"><span class="label label-default">Open</span></span><i class="fa fa-envelope"></i> SMTP Email</li>
+                                    </ul>
+                                    <p class="text-muted small m-t">Register integrations in <code>data/integrations.json</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── state_engine-validator ── -->
+                <div id="state_engine-validator" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-check-circle text-navy"></i> Validator</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Project Integrity Validator</strong></h2>
+                                    <p class="text-muted">Automated validation of project structure, JSON schemas, script syntax and inter-module contracts.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Detect structural and schema violations early</li>
+                                                <li><i class="fa fa-angle-right"></i> Prevent broken states from propagating</li>
+                                                <li><i class="fa fa-angle-right"></i> Provide precise, actionable error locations</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As an architect I want the system to automatically verify that all JSON files and scripts conform to their expected schema before any deployment step."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Validate all <code>data/*.json</code> against defined schemas</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Check JS/Python syntax in <code>scripts/</code></td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Report: file, line, severity, description per issue</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>4</td><td>Run on file change (watch mode) or on demand</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Publish results to State Engine event bus</td><td><span class="label label-warning">P1</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>File watcher → Schema checker → Issue collector → data/validation.json → State Engine → UI</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Feeds <strong>Developer Reports</strong> and triggers <strong>Telegram</strong> alerts on ERROR level.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-check-circle"></i> Last Run</h5></div>
+                                <div class="ibox-content text-center" style="padding: 40px 20px;">
+                                    <i class="fa fa-check-circle" style="font-size: 48px; color: #1ab394;"></i>
+                                    <h4 class="m-t-md">All checks passed</h4>
+                                    <p class="text-muted small">0 errors · 1 warning · Last run: 2 min ago</p>
+                                    <div class="m-t">
+                                        <button class="btn btn-sm btn-primary"><i class="fa fa-play"></i> Run Validator</button>
+                                    </div>
+                                    <div class="m-t text-left">
+                                        <p class="text-muted small"><strong>Checked:</strong> project.json, settings.json, scripts/core/</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── state_engine-changelog ── -->
+                <div id="state_engine-changelog" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-history text-navy"></i> Changelog</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Automatic Project Changelog</strong></h2>
+                                    <p class="text-muted">Machine-generated log of all project state changes, config edits, and system events with full context.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Full audit trail of system changes</li>
+                                                <li><i class="fa fa-angle-right"></i> Rollback context for state recovery</li>
+                                                <li><i class="fa fa-angle-right"></i> Accountability and release documentation</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As a team lead I want to see a chronological log of all changes made to the project config and state to understand what changed and when."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Auto-append entry on every state mutation</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Entry fields: timestamp, actor, event type, diff</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Filter by date range, event type, actor</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>4</td><td>Paginate entries (50 per page)</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Export changelog as Markdown or JSON</td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>State Engine mutation → Changelog Writer → data/changelog.json → Timeline UI</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Written by <strong>State Engine</strong>. Read by <strong>PDF Export</strong> for release notes generation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-history"></i> Recent Events</h5></div>
+                                <div class="ibox-content">
+                                    <ul class="list-group clear-list m-t">
+                                        <li class="list-group-item"><span class="float-right text-muted small">Today 10:15</span><i class="fa fa-check text-navy"></i> Validator passed</li>
+                                        <li class="list-group-item"><span class="float-right text-muted small">Yesterday</span><i class="fa fa-warning text-warning"></i> Schema warning: i18n</li>
+                                        <li class="list-group-item"><span class="float-right text-muted small">11.06</span><i class="fa fa-plug text-primary"></i> Telegram connected</li>
+                                        <li class="list-group-item"><span class="float-right text-muted small">10.06</span><i class="fa fa-cog text-muted"></i> Settings updated</li>
+                                    </ul>
+                                    <p class="text-muted small m-t">Full log: <code>data/changelog.json</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── settings-theme ── -->
+                <div id="settings-theme" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-paint-brush text-navy"></i> Theme Settings</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>UI Theme Configuration</strong></h2>
+                                    <p class="text-muted">Centralized theme management: color mode, accent colors, and typography — with persistence across sessions.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Provide comfortable viewing in any lighting condition</li>
+                                                <li><i class="fa fa-angle-right"></i> Match brand color for client-facing mode</li>
+                                                <li><i class="fa fa-angle-right"></i> Persist preferences without server</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As a user I want to switch to dark mode and pick an accent color so the dashboard matches my preferences and stays that way on next visit."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Toggle: Light / Dark / System (follows OS preference)</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>Select accent color from predefined palette (6 options)</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>Persist selection to <code>localStorage</code> (no server needed)</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>4</td><td>Apply theme without page reload (CSS variables swap)</td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Reset to system default button</td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>UI toggle → theme-store.js → localStorage → CSS var swap on &lt;html&gt; → Instant visual update</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Managed by <strong>theme-store.js</strong> + <strong>theme-variables.css</strong>. Also accessible via the right-side Theme Panel.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-paint-brush"></i> Active Theme</h5></div>
+                                <div class="ibox-content" style="padding: 20px;">
+                                    <p class="text-muted small">Current theme is managed via the right-side panel (<strong>Theme Panel</strong>). Use it to switch mode and accent color instantly.</p>
+                                    <hr>
+                                    <p class="text-muted small"><strong>Stored keys:</strong></p>
+                                    <ul class="list-unstyled text-muted small">
+                                        <li><code>aip_theme_mode</code> — light | dark | system</li>
+                                        <li><code>aip_accent_color</code> — primary | navy | ...</li>
+                                    </ul>
+                                    <hr>
+                                    <p class="text-muted small">A dedicated settings form for theme will aggregate these controls in one page for easier access.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── settings-client ── -->
+                <div id="settings-client" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-user-circle text-navy"></i> Client Mode</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Client-Facing View Mode</strong></h2>
+                                    <p class="text-muted">A simplified, non-technical view of the dashboard for presenting to clients — hides internal tooling and exposes only status and reports.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Safe to show to non-technical stakeholders</li>
+                                                <li><i class="fa fa-angle-right"></i> Hide developer-only panels and raw data</li>
+                                                <li><i class="fa fa-angle-right"></i> Present progress, not implementation details</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As a PM I want to share my screen with a client and switch to Client Mode so they only see project status and reports — not system logs."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Requirement</th><th>Priority</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Single toggle to switch between Developer / Client mode</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>2</td><td>In Client mode: hide State Engine, Validator, Dev Reports</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>3</td><td>In Client mode: show only Projects, Client Reports, About</td><td><span class="label label-danger">P0</span></td></tr>
+                                            <tr><td>4</td><td>Persist mode in <code>localStorage</code></td><td><span class="label label-warning">P1</span></td></tr>
+                                            <tr><td>5</td><td>Display "Client Mode Active" badge in navbar</td><td><span class="label label-primary">P2</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>Toggle click → localStorage[aip_client_mode] → CSS class on body → DOM show/hide of panels</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Affects visibility of: <strong>State Engine</strong>, <strong>Developer Reports</strong>, <strong>PDF Export</strong> (template selection). No data deleted, only hidden.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-user-circle"></i> Mode Control</h5></div>
+                                <div class="ibox-content" style="padding: 20px;">
+                                    <p class="text-muted small">Currently available via the <strong>Mode</strong> dropdown in the top navbar. A dedicated settings page will consolidate all mode options.</p>
+                                    <hr>
+                                    <h4>Visible in Client Mode:</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa fa-check text-success"></i> Projects Overview</li>
+                                        <li><i class="fa fa-check text-success"></i> Client Reports</li>
+                                        <li><i class="fa fa-check text-success"></i> About</li>
+                                    </ul>
+                                    <h4>Hidden in Client Mode:</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa fa-times text-danger"></i> State Engine</li>
+                                        <li><i class="fa fa-times text-danger"></i> Developer Reports</li>
+                                        <li><i class="fa fa-times text-danger"></i> Settings</li>
+                                        <li><i class="fa fa-times text-danger"></i> Integrations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── settings-profile ── -->
+                <div id="settings-profile" class="page-section" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5><i class="fa fa-id-card text-navy"></i> Project Profile</h5>
+                                    <div class="ibox-tools"><span class="label label-info">SPEC</span></div>
+                                </div>
+                                <div class="ibox-content">
+                                    <h2><strong>Project Identity & Configuration Profile</strong></h2>
+                                    <p class="text-muted">Defines core project metadata, contact info, and API credentials used system-wide across all modules.</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-bullseye text-navy"></i> Purpose</h4>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-angle-right"></i> Single source of truth for project identity</li>
+                                                <li><i class="fa fa-angle-right"></i> Store API keys and credentials securely</li>
+                                                <li><i class="fa fa-angle-right"></i> Feed project name/logo into PDF and reports</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4><i class="fa fa-user text-info"></i> User Story</h4>
+                                            <p><em>"As an admin I want to fill in project name, client name, Telegram token and logo once, and have all modules use that data automatically."</em></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4><i class="fa fa-list-ul"></i> Functional Requirements</h4>
+                                    <table class="table table-condensed table-bordered">
+                                        <thead><tr><th>#</th><th>Field</th><th>Required</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>1</td><td>Project Name</td><td><span class="label label-danger">Yes</span></td></tr>
+                                            <tr><td>2</td><td>Client Name / Organization</td><td><span class="label label-warning">Optional</span></td></tr>
+                                            <tr><td>3</td><td>Admin Email</td><td><span class="label label-danger">Yes</span></td></tr>
+                                            <tr><td>4</td><td>Telegram Bot Token + Chat ID</td><td><span class="label label-warning">Optional</span></td></tr>
+                                            <tr><td>5</td><td>Project Logo URL</td><td><span class="label label-warning">Optional</span></td></tr>
+                                            <tr><td>6</td><td>Environment: dev / staging / production</td><td><span class="label label-danger">Yes</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <h4><i class="fa fa-code-fork"></i> Data Flow</h4>
+                                    <p><code>Form input → Validate → data/settings.json → All modules read from settings.json on init</code></p>
+                                    <h4><i class="fa fa-puzzle-piece"></i> Integration</h4>
+                                    <p>Read by: <strong>PDF Export</strong> (logo, name), <strong>Telegram</strong> (token), <strong>Validator</strong> (env flag), <strong>About</strong> (project info).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="ibox">
+                                <div class="ibox-title"><h5><i class="fa fa-id-card"></i> Current Profile</h5></div>
+                                <div class="ibox-content">
+                                    <ul class="list-group clear-list m-t">
+                                        <li class="list-group-item"><span class="float-right text-navy"><strong>AI Project OS</strong></span> Project</li>
+                                        <li class="list-group-item"><span class="float-right text-muted">—</span> Client</li>
+                                        <li class="list-group-item"><span class="float-right text-muted">admin@example.com</span> Email</li>
+                                        <li class="list-group-item"><span class="float-right"><span class="label label-warning">Not set</span></span> Telegram</li>
+                                        <li class="list-group-item"><span class="float-right"><span class="label label-primary">dev</span></span> Environment</li>
+                                    </ul>
+                                    <p class="text-muted small m-t">Edit profile via <strong>Global Settings</strong> form or directly in <code>data/settings.json</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div id="about" class="page-section" style="display:none;">
                     <div class="row">
@@ -511,5 +1227,7 @@
     
     <!-- AI Project OS Core -->
     <script src="js/core-loader.js"></script>
+    <!-- Theme Store + Right Side Panel -->
+    <script src="js/theme-store.js"></script>
 </body>
 </html>

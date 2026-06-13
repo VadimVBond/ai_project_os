@@ -1,0 +1,358 @@
+/* ============================================================
+   AI Project OS — Right Side Theme Panel Styles
+   Floating collapsible panel для кастомизации UI.
+   ============================================================ */
+
+/* ── Toggle Button (floating) ── */
+#theme-panel-toggle {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1060;
+    width: 36px;
+    height: 72px;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3px;
+    box-shadow: -2px 2px 12px rgba(0,0,0,0.18);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+    padding: 0;
+    outline: none;
+}
+
+#theme-panel-toggle:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-50%) translateX(-2px);
+}
+
+#theme-panel-toggle .toggle-icon {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+#theme-panel-toggle .toggle-label {
+    color: rgba(255,255,255,0.85);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    line-height: 1;
+    margin-top: 2px;
+}
+
+/* Когда панель открыта */
+body.theme-panel-open #theme-panel-toggle {
+    right: 280px;
+    border-radius: 8px 0 0 8px;
+}
+
+body.theme-panel-open #theme-panel-toggle .toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* ── Основная панель ── */
+#theme-panel {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    z-index: 1059;
+    background: var(--panel-bg);
+    border-left: 1px solid var(--panel-border);
+    box-shadow: var(--panel-shadow);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: right 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+}
+
+#theme-panel.open {
+    right: 0;
+}
+
+/* Scrollbar стиль */
+#theme-panel::-webkit-scrollbar {
+    width: 4px;
+}
+#theme-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+#theme-panel::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+}
+
+/* ── Шапка панели ── */
+.theme-panel-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--panel-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    background: var(--panel-bg);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+}
+
+.theme-panel-header .panel-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--color-accent-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: background-color var(--transition-base);
+}
+
+.theme-panel-header h5 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-strong);
+    line-height: 1.3;
+}
+
+.theme-panel-header small {
+    display: block;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: 1px;
+}
+
+/* ── Секции панели ── */
+.theme-panel-section {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.theme-panel-section:last-child {
+    border-bottom: none;
+}
+
+.theme-panel-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin: 0 0 12px;
+}
+
+/* ── Theme Mode Switcher ── */
+.theme-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.theme-mode-btn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 6px;
+    background: var(--color-surface-2);
+    border: 2px solid var(--panel-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    color: var(--color-text);
+    font-size: 11px;
+    font-weight: 600;
+    min-height: 64px;
+}
+
+.theme-mode-btn:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+}
+
+.theme-mode-btn.active {
+    border-color: var(--color-accent);
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+}
+
+.theme-mode-btn i {
+    font-size: 18px;
+}
+
+.theme-mode-btn .check-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 14px;
+    height: 14px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #fff;
+}
+
+.theme-mode-btn.active .check-badge {
+    display: flex;
+}
+
+/* ── Accent Color Picker ── */
+.accent-color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.accent-color-swatch {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    min-height: 44px;
+}
+
+.accent-color-swatch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.accent-color-swatch.active {
+    border-color: var(--color-text-strong);
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.accent-color-swatch .swatch-check {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.accent-color-swatch.active .swatch-check {
+    display: flex;
+}
+
+/* Цвета свотчей */
+.swatch-primary  { background: #1ab394; }
+.swatch-blue     { background: #1c84c6; }
+.swatch-violet   { background: #7c3aed; }
+.swatch-coral    { background: #ed5565; }
+.swatch-amber    { background: #f59e0b; }
+.swatch-emerald  { background: #10b981; }
+.swatch-rose     { background: #f43f5e; }
+.swatch-slate    { background: #64748b; }
+
+/* Название цвета */
+.accent-color-name {
+    font-size: 10px;
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+    display: block;
+}
+
+/* ── Footer панели ── */
+.theme-panel-footer {
+    padding: 14px 20px;
+    border-top: 1px solid var(--panel-border);
+    margin-top: auto;
+}
+
+.theme-panel-footer .reset-btn {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    color: var(--color-text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.theme-panel-footer .reset-btn:hover {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+    background: rgba(237, 85, 101, 0.06);
+}
+
+/* ── Оверлей (optional mobile) ── */
+#theme-panel-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1058;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#theme-panel-overlay.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* ── Адаптивность ── */
+@media (max-width: 768px) {
+    body.theme-panel-open #theme-panel-toggle {
+        right: 240px;
+    }
+
+    #theme-panel {
+        width: 240px;
+        right: -240px;
+    }
+
+    #theme-panel-overlay.visible {
+        display: block;
+    }
+}
+
+/* ── Анимация появления ── */
+@keyframes panelPulse {
+    0%   { box-shadow: 0 0 0 0 var(--color-accent); }
+    70%  { box-shadow: 0 0 0 8px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+#theme-panel-toggle.pulse {
+    animation: panelPulse 1.5s ease-out 2;
+}

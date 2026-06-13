@@ -1,0 +1,158 @@
+/* ============================================================
+   AI Project OS — Theme Variables System
+   Слой CSS-переменных поверх Bootstrap/Inspinia.
+   Не перезаписывает существующие стили — только расширяет.
+   ============================================================ */
+
+/* --- Базовые токены (Light mode defaults) --- */
+:root {
+    /* Backgrounds */
+    --color-background:   #f3f3f4;
+    --color-surface:      #ffffff;
+    --color-surface-2:    #f8f9fa;
+    --color-border:       #e7eaec;
+
+    /* Text */
+    --color-text:         #676a6c;
+    --color-text-strong:  #333333;
+    --color-text-muted:   #999999;
+
+    /* Accent / Primary (default: Inspinia Navy) */
+    --color-primary:      #1ab394;
+    --color-accent:       #1ab394;
+    --color-accent-hover: #158d74;
+    --color-accent-light: rgba(26, 179, 148, 0.12);
+
+    /* Semantic */
+    --color-success:      #1c84c6;
+    --color-warning:      #f8ac59;
+    --color-danger:       #ed5565;
+    --color-info:         #23c6c8;
+
+    /* Panel */
+    --panel-bg:           rgba(255, 255, 255, 0.96);
+    --panel-shadow:       0 8px 32px rgba(0,0,0,0.14);
+    --panel-border:       #e7eaec;
+
+    /* Transitions */
+    --transition-base:    0.2s ease;
+}
+
+/* --- Dark mode tokens --- */
+body.dark-mode,
+html.theme-preload-dark body {
+    --color-background:   #232c33;
+    --color-surface:      #2f4050;
+    --color-surface-2:    #293846;
+    --color-border:       #1f2b36;
+
+    --color-text:         #dfdfdf;
+    --color-text-strong:  #ffffff;
+    --color-text-muted:   #a7b1c2;
+
+    --panel-bg:           rgba(35, 44, 51, 0.97);
+    --panel-shadow:       0 8px 32px rgba(0,0,0,0.45);
+    --panel-border:       #1f2b36;
+}
+
+/* ============================================================
+   Accent Color Presets — применяются через data-accent на <html>
+   ============================================================ */
+
+/* Primary (default teal) */
+html[data-accent="primary"] {
+    --color-accent:       #1ab394;
+    --color-accent-hover: #158d74;
+    --color-accent-light: rgba(26, 179, 148, 0.12);
+}
+
+/* Ocean Blue */
+html[data-accent="blue"] {
+    --color-accent:       #1c84c6;
+    --color-accent-hover: #1567a0;
+    --color-accent-light: rgba(28, 132, 198, 0.12);
+}
+
+/* Violet */
+html[data-accent="violet"] {
+    --color-accent:       #7c3aed;
+    --color-accent-hover: #6024c4;
+    --color-accent-light: rgba(124, 58, 237, 0.12);
+}
+
+/* Coral / Danger */
+html[data-accent="coral"] {
+    --color-accent:       #ed5565;
+    --color-accent-hover: #c93d4c;
+    --color-accent-light: rgba(237, 85, 101, 0.12);
+}
+
+/* Amber */
+html[data-accent="amber"] {
+    --color-accent:       #f59e0b;
+    --color-accent-hover: #d97706;
+    --color-accent-light: rgba(245, 158, 11, 0.12);
+}
+
+/* Emerald */
+html[data-accent="emerald"] {
+    --color-accent:       #10b981;
+    --color-accent-hover: #059669;
+    --color-accent-light: rgba(16, 185, 129, 0.12);
+}
+
+/* Rose */
+html[data-accent="rose"] {
+    --color-accent:       #f43f5e;
+    --color-accent-hover: #e11d48;
+    --color-accent-light: rgba(244, 63, 94, 0.12);
+}
+
+/* Slate */
+html[data-accent="slate"] {
+    --color-accent:       #64748b;
+    --color-accent-hover: #475569;
+    --color-accent-light: rgba(100, 116, 139, 0.12);
+}
+
+/* ============================================================
+   Utility — компоненты, использующие accent color через var()
+   ============================================================ */
+
+/* Bootstrap btn-primary переопределяем через accent */
+.btn-primary {
+    background-color: var(--color-accent) !important;
+    border-color:     var(--color-accent) !important;
+    transition: background-color var(--transition-base), border-color var(--transition-base), opacity var(--transition-base);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-accent-hover) !important;
+    border-color:     var(--color-accent-hover) !important;
+}
+
+/* Nav sidebar active item */
+.metismenu .active > a,
+.metismenu .active > a:hover,
+.metismenu .active > a:focus {
+    color: var(--color-accent) !important;
+    border-left-color: var(--color-accent) !important;
+}
+
+/* progress bars */
+.progress-bar {
+    background-color: var(--color-accent) !important;
+}
+
+/* Label primary */
+.label-primary {
+    background-color: var(--color-accent) !important;
+}
+
+/* Links accent */
+a.accent-link {
+    color: var(--color-accent);
+}
+a.accent-link:hover {
+    color: var(--color-accent-hover);
+}

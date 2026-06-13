@@ -38,11 +38,18 @@ $(document).ready(function() {
         if (!systemSettings) return;
 
         // Apply Theme
-        if (systemSettings.theme === 'dark') {
-            $('body').removeClass('md-skin').addClass('skin-1 dark-mode'); // skin-1 is dark theme sidebar, dark-mode is full custom dark
-        } else {
-            $('body').removeClass('skin-1 dark-mode').addClass('md-skin');
+        // PATCHED: ThemeStore (localStorage) takes priority over settings.json.
+        // Only apply settings.json theme if user has NOT saved a custom preference.
+        var userSavedTheme = localStorage.getItem('aip_theme_mode');
+        if (!userSavedTheme) {
+            // No localStorage preference — use settings.json value
+            if (systemSettings.theme === 'dark') {
+                $('body').removeClass('md-skin').addClass('skin-1 dark-mode'); // skin-1 is dark theme sidebar, dark-mode is full custom dark
+            } else {
+                $('body').removeClass('skin-1 dark-mode').addClass('md-skin');
+            }
         }
+        // If userSavedTheme exists, ThemeStore has already applied it — do nothing here.
 
         // Apply Mode
         $('.current-mode-label').text(systemSettings.mode === 'developer' ? 'Developer Mode' : 'Client Mode');

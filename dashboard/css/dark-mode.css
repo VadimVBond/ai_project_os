@@ -1,4 +1,21 @@
 /* AI Project OS - True Dark Mode Overrides */
+/* Интегрировано с theme-variables.css — расширение, не замена */
+
+/* ── Плавный переход при смене темы ── */
+body,
+body #page-wrapper,
+body .gray-bg,
+body .white-bg,
+body .navbar-static-top,
+body .ibox-title,
+body .ibox-content,
+body .dropdown-menu,
+body .footer {
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
 body.dark-mode {
     color: #dfdfdf;
     background-color: #2f4050; /* Same as sidebar */
